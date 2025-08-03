@@ -1,0 +1,92 @@
+.navbar-container {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-input-container {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.navbar-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  color: #1e293b;
+}
+
+.calculator-btn {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.calculator-btn:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.history-btn {
+  border-color: #64748b;
+  color: #64748b;
+}
+
+.history-btn:hover {
+  background: #64748b;
+  color: white;
+}
+
+.btn-icon {
+  flex-shrink: 0;
+}

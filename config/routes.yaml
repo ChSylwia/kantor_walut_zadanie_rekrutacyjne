@@ -1,0 +1,42 @@
+#home:
+#  path: /
+#  defaults: { _controller: 'AppBundle\Controller\DefaultController::indexAction' }
+#  methods:  GET
+#
+
+setupcheck:
+  path: /api/setup-check
+  controller: App\Controller\DefaultController::setupCheck
+
+# Currency Exchange API routes
+currency_exchange_get:
+  path: /api/last-rates
+  controller: App\Controller\CurrencyExchangeController::getLastRates
+  methods: [GET]
+
+currency_exchange_with_spreads:
+  path: /api/exchange-rates
+  controller: App\Controller\CurrencyExchangeController::getExchangeRatesWithSpreads
+  methods: [GET]
+
+currency_history:
+  path: /api/currency-history/{currencyCode}
+  controller: App\Controller\CurrencyHistoryController::getCurrencyHistory
+  methods: [GET]
+
+currency_calculate:
+  path: /api/calculate
+  controller: App\Controller\CurrencyCalculatorController::calculate
+  methods: [POST]
+
+currency_flags:
+  path: /api/currencies/flags
+  controller: App\Controller\CurrencyController::getCurrencyFlags
+  methods: [GET]
+
+index:
+  path: /{wildcard}
+  defaults: { _controller: App\Controller\DefaultController::index }
+  requirements:
+    wildcard: .*
+  # controller: App\Controller\DefaultController::index

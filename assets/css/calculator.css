@@ -1,0 +1,128 @@
+.conversion-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.currency-selector {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.currency-display {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.currency-select {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: white;
+  cursor: pointer;
+  color: #1e293b;
+}
+
+.currency-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.current-rate {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-align: center;
+  font-weight: 500;
+}
+
+.swap-button {
+  padding: 0.75rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #2563eb;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.swap-button:hover {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+  transform: rotate(180deg);
+}
+
+.conversion-inputs {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.amount-input {
+  padding: 1rem;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.amount-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.amount-input.result {
+  background: #f8fafc;
+  font-weight: 700;
+  color: #2563eb;
+  border-color: #2563eb;
+}
+
+.convert-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.convert-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}

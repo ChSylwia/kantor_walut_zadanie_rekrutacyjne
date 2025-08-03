@@ -1,0 +1,87 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+  airtable.base_token: "%env(TOKEN_BASE_AIRTABLE)%"
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\:
+    resource: "../src/App"
+    exclude:
+      - "../src/DependencyInjection/"
+      - "../src/Entity/"
+
+  # controllers are imported separately to make sure services can be injected
+  # as action arguments even if you don't extend any base controller class
+  App\Controller\:
+    resource: "../src/App/Controller/"
+    autowire: true
+    tags: ["controller.service_arguments"] # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
+
+  # Airtable Configuration
+  App\Service\Airtable\AirtableConfig:
+    arguments:
+      $baseToken: "%airtable.base_token%"
+      $baseId: "appQDXzI5KmtAO8Ag"
+      $apiUrl: "https://api.airtable.com/v0"
+
+  # Airtable Client Service
+  App\Service\Airtable\AirtableClient:
+    arguments:
+      $config: '@App\Service\Airtable\AirtableConfig'
+  # Airtable Current Exchanges Provider
+  App\Service\ExchangeRate\AirtableLastExchangesProvider:
+    arguments:
+      $airtableClient: '@App\Service\Airtable\AirtableClient'
+      $exchangeRatesConfig: '@App\Service\ExchangeRates\ExchangeRatesConfig' # Exchange Rates Configuration
+  App\Service\ExchangeRates\ExchangeRatesConfig:
+    arguments:
+      $configPath: "%kernel.project_dir%/config/exchange_rates.yaml"
+  # Spread Calculator
+  App\Service\ExchangeRates\SpreadCalculator:
+    arguments:
+      $exchangeRatesConfig: '@App\Service\ExchangeRates\ExchangeRatesConfig'
+
+  # Exchange Rate With Spreads Provider
+  App\Service\ExchangeRate\ExchangeRateWithSpreadsProvider:
+    arguments:
+      $airtableProvider: '@App\Service\ExchangeRate\AirtableLastExchangesProvider'
+      $spreadCalculator: '@App\Service\ExchangeRates\SpreadCalculator'
+  App\Service\CurrencyCountryService:
+    arguments:
+      $pathToYaml: "%kernel.project_dir%/config/codeISO.yaml"
+
+  # Last Rates Updater Service
+  App\Service\LastRatesUpdater\LastRatesUpdaterService:
+    arguments:
+      $airtableClient: '@App\Service\Airtable\AirtableClient'
+      $nbpLastRatesProvider: '@App\Service\Nbp\NbpLastRatesProvider'
+  # NBP Services
+  App\Service\Nbp\NbpClient: ~
+
+  App\Service\Nbp\NbpLastRatesProvider:
+    arguments:
+      $nbpClient: '@App\Service\Nbp\NbpClient'
+      $exchangeRatesConfig: '@App\Service\ExchangeRates\ExchangeRatesConfig'
+
+  # Currency Calculator Service
+  App\Service\CurrencyCalculator\CurrencyCalculatorService:
+    arguments:
+      $airtableProvider: '@App\Service\ExchangeRate\AirtableLastExchangesProvider'
+      $spreadCalculator: '@App\Service\ExchangeRates\SpreadCalculator'
+      $exchangeRatesConfig: '@App\Service\ExchangeRates\ExchangeRatesConfig'
+
+  # Currency Calculator Controller
+  App\Controller\CurrencyCalculatorController:
+    arguments:
+      $calculatorService: '@App\Service\CurrencyCalculator\CurrencyCalculatorService'

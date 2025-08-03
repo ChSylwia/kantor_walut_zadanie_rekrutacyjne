@@ -1,0 +1,14 @@
+exchange_rates:
+  spreads:
+    EUR:
+      buy: -0.15
+      sell: 0.11
+    USD:
+      buy: -0.15
+      sell: 0.11
+    CZK:
+      sell: 0.2
+    IDR:
+      sell: 0.2
+    BRL:
+      sell: 0.2
