@@ -1,6 +1,6 @@
-# 💱 Currency Exchange – Zadanie Rekrutacyjne (Zanonimizowane)
+# 💱 Zadanie Rekrutacyjne Kantor Walut
 
-Projekt pełstackowego kantoru walut. Aplikacja pobiera kursy walut z API NBP, przechowuje je lokalnie, wyświetla aktualne dane na froncie oraz umożliwia ich automatyczne odświeżanie za pomocą zadań CRON.
+Projekt kantoru walut. Aplikacja pobiera kursy walut z API NBP, przechowuje je lokalnie, wyświetla aktualne dane na froncie oraz umożliwia ich automatyczne odświeżanie za pomocą zadań CRON.
 
 ---
 
@@ -81,7 +81,7 @@ Możesz też pobrać kursy ręcznie:
 
     php bin/console app:update-rates
 
-## ✅ Wymagania i założenia
+## ✅ Wymagania i założenia narzucone przez firmę
 
 - Nie należy dodawać nowych zależności do composer.json / package.json
 - Kod powinien być zgodny z PHP 8.2
