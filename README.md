@@ -8,9 +8,7 @@ Projekt kantoru walut. Aplikacja pobiera kursy walut z API NBP, przechowuje je l
 
 - PHP 8.2 (Symfony)
 
-- JavaScript (frontend wbudowany w Symfony)
-
-- Docker (opcjonalnie)
+- JavaScript (biblioteka React.js)
 
 - CRON (Windows / Linux / Mac)
 
